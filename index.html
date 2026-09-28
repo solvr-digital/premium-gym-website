@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IRONVAULT — Private Luxury Fitness Club</title>
+  <meta name="description" content="An uncompromising sanctuary for human physical and mental excellence. Private Fitness Club Est. 2016.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' fill='%23e5e5e5'>⚡</text></svg>">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@500;700;800&family=Italiana&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+
+  <!-- NOISE SVG FILTER -->
+  <svg class="svg-filters" aria-hidden="true">
+    <filter id="noise-filter">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+      <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.05 0" />
+    </filter>
+  </svg>
+
+  <!-- FILM GRAIN TEXTURE OVERLAY -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- AMBIENT FLOATING DUST/PARTICLES CANVAS -->
+  <canvas id="bg-particles"></canvas>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="custom-cursor" id="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-ring" id="cursor-ring">
+      <span class="cursor-text" id="cursor-text"></span>
+    </div>
+  </div>
+
+  <!-- CINEMATIC PRELOADER SCREEN -->
+  <div id="loader" class="loader-container">
+    <div class="loader-curtain loader-curtain-top"></div>
+    <div class="loader-curtain loader-curtain-bottom"></div>
+    <div class="loader-content">
+      <div class="loader-brand">
+        <span class="loader-tagline">PRIVATE FITNESS SANCTUARY</span>
+        <h1 class="loader-title">IRONVAULT</h1>
+      </div>
+      <div class="loader-bar-wrap">
+        <div class="loader-bar-track">
+          <div class="loader-bar-fill" id="loader-bar"></div>
+        </div>
+        <div class="loader-meta">
+          <span class="loader-sub">MEMBERSHIP ACCESS GATEWAY</span>
+          <span class="loader-percent" id="loader-percent">00%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING LUXURY NAVIGATION -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo hover-magnetic" data-cursor="HOME">
+        <span class="logo-mark">IV</span>
+        <span class="logo-text">IRONVAULT</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#about" class="nav-link hover-link" data-cursor="VIEW">ABOUT</a>
+        <a href="#programs" class="nav-link hover-link" data-cursor="VIEW">PROGRAMS</a>
+        <a href="#experience" class="nav-link hover-link" data-cursor="VIEW">EXPERIENCE</a>
+        <a href="#trainers" class="nav-link hover-link" data-cursor="VIEW">COACHES</a>
+        <a href="#transformation" class="nav-link hover-link" data-cursor="VIEW">RESULTS</a>
+        <a href="#membership" class="nav-link hover-link" data-cursor="VIEW">TIERS</a>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Ambient Sound Toggle -->
+        <button id="sound-toggle" class="sound-btn hover-btn" title="Toggle Cinematic Ambience" aria-label="Toggle Sound">
+          <span class="sound-bars">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
+          <span class="sound-label">SOUND</span>
+        </button>
+
+        <!-- Primary Action -->
+        <button class="nav-cta hover-magnetic" id="btn-inquire-nav" data-cursor="INQUIRE">
+          <span>APPLY NOW</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 17L17 7M17 7H7M17 7V17" />
+          </svg>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE FULLSCREEN MENU OVERLAY -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <span class="drawer-logo">IRONVAULT</span>
+      <button class="drawer-close" id="drawer-close">✕</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#about" class="drawer-link">01. ABOUT</a>
+      <a href="#programs" class="drawer-link">02. PROGRAMS</a>
+      <a href="#experience" class="drawer-link">03. EXPERIENCE</a>
+      <a href="#trainers" class="drawer-link">04. COACHES</a>
+      <a href="#transformation" class="drawer-link">05. RESULTS</a>
+      <a href="#membership" class="drawer-link">06. MEMBERSHIP</a>
+    </div>
+    <div class="drawer-footer">
+      <p class="drawer-locations">LONDON • NEW YORK • TOKYO • DUBAI</p>
+      <button class="drawer-cta" id="btn-inquire-mobile">REQUEST INVITATION →</button>
+    </div>
+  </div>
+
+  <!-- MAIN SCROLL CONTAINER -->
+  <main id="main-content">
+
+    <!-- 01. HERO SECTION -->
+    <section class="hero-section" id="hero">
+      <div class="hero-bg-wrapper" id="hero-bg-wrap">
+        <div class="hero-bg-overlay"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2000&auto=format&fit=crop" 
+          alt="Athlete training in luxury dark gym" 
+          class="hero-bg-img" 
+          id="hero-img"
+        />
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge-wrap">
+          <span class="hero-badge">PRIVATE FITNESS CLUB</span>
+          <span class="hero-badge-divider">•</span>
+          <span class="hero-badge">EST. 2016</span>
+        </div>
+
+        <h1 class="hero-heading" id="hero-heading">
+          <span class="hero-line"><span class="hero-word">FORGED</span></span>
+          <span class="hero-line hero-line-offset"><span class="hero-word">NOT</span> <span class="hero-word highlight-silver">FOUND.</span></span>
+        </h1>
+
+        <p class="hero-subtext">
+          An architectural sanctuary built for relentless discipline, biomechanical precision, and the relentless pursuit of human physical power.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#membership" class="btn-primary hover-magnetic" data-cursor="ENTER">
+            <span class="btn-text">ENTER IRONVAULT</span>
+            <span class="btn-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
+          </a>
+          <a href="#about" class="btn-secondary hover-magnetic" data-cursor="VIEW">
+            <span>EXPLORE CLUB</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-scroll-indicator">
+        <div class="scroll-mouse">
+          <div class="scroll-wheel"></div>
+        </div>
+        <span class="scroll-label">SCROLL TO COMMENCE</span>
+      </div>
+    </section>
+
+    <!-- 02. INFINITE DUAL MARQUEE SECTION -->
+    <section class="marquee-section" id="marquee-banner">
+      <div class="marquee-row marquee-left" id="marquee-left">
+        <div class="marquee-track">
+          <span class="marquee-item">STRENGTH <span class="sep">—</span></span>
+          <span class="marquee-item">DISCIPLINE <span class="sep">—</span></span>
+          <span class="marquee-item">POWER <span class="sep">—</span></span>
+          <span class="marquee-item">PERFORMANCE <span class="sep">—</span></span>
+          <span class="marquee-item">CONTROL <span class="sep">—</span></span>
+          <span class="marquee-item">STRENGTH <span class="sep">—</span></span>
+          <span class="marquee-item">DISCIPLINE <span class="sep">—</span></span>
+          <span class="marquee-item">POWER <span class="sep">—</span></span>
+          <span class="marquee-item">PERFORMANCE <span class="sep">—</span></span>
+          <span class="marquee-item">CONTROL <span class="sep">—</span></span>
+        </div>
+      </div>
+      <div class="marquee-row marquee-right marquee-outline" id="marquee-right">
+        <div class="marquee-track">
+          <span class="marquee-item">UNCOMPROMISING PRECISION <span class="sep">/</span></span>
+          <span class="marquee-item">BIOMECHANICAL ART <span class="sep">/</span></span>
+          <span class="marquee-item">RAW EXCELLENCE <span class="sep">/</span></span>
+          <span class="marquee-item">BESPOKE PROTOCOLS <span class="sep">/</span></span>
+          <span class="marquee-item">UNCOMPROMISING PRECISION <span class="sep">/</span></span>
+          <span class="marquee-item">BIOMECHANICAL ART <span class="sep">/</span></span>
+          <span class="marquee-item">RAW EXCELLENCE <span class="sep">/</span></span>
+          <span class="marquee-item">BESPOKE PROTOCOLS <span class="sep">/</span></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03. ABOUT SECTION WITH EXPANDING EDITORIAL IMAGE -->
+    <section class="about-section" id="about">
+      <div class="section-container">
+        
+        <div class="about-header">
+          <div class="section-label-wrap">
+            <span class="section-number">01</span>
+            <span class="section-label">THE PHILOSOPHY</span>
+          </div>
+          <h2 class="about-title split-words">
+            NOT JUST A GYM.<br>
+            <span class="italic-fashion">A STANDARD.</span>
+          </h2>
+        </div>
+
+        <div class="about-split">
+          <div class="about-progress-col">
+            <div class="progress-track-vertical">
+              <div class="progress-line-vertical" id="about-line"></div>
+            </div>
+          </div>
+
+          <div class="about-content-col">
+            <p class="about-lead">
+              Conventional fitness centers cater to the masses. IronVault was conceived as an exclusionary temple for high-performing athletes, founders, and icons who demand extraordinary results without friction or distraction.
+            </p>
+            <p class="about-body">
+              Every barbell is calibrated to Olympic tolerances. Every room is bathed in focused architectural lighting designed to induce psychological flow states. We reject generic group classes in favor of bespoke biomechanical mastery, continuous biomarker optimization, and elite recovery sciences.
+            </p>
+            <div class="about-signature">
+              <div class="sig-line"></div>
+              <span class="sig-text">EXCLUSIVITY GUARANTEED • 300 MEMBERS PER CLUB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Expanding Image Feature -->
+        <div class="about-image-stage" id="about-stage">
+          <div class="about-image-card" id="about-img-card">
+            <img 
+              src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=1800&auto=format&fit=crop" 
+              alt="Athlete focused on heavy kettlebell training"
+              class="about-img hover-img"
+              id="about-img"
+              data-cursor="VIEW"
+            />
+            <div class="about-image-badge">
+              <span class="badge-accent">ARCHITECTURAL MASTERY</span>
+              <span class="badge-sub">LONDON • TOKYO • NYC • DIFC</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 04. STATISTICS SECTION (BLUR-TO-SHARP COUNTERS) -->
+    <section class="stats-section" id="stats">
+      <div class="section-container">
+        <div class="stats-grid">
+          
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-number counter-value" data-target="10">0</span>
+              <span class="stat-plus">+</span>
+            </div>
+            <span class="stat-label">YEARS</span>
+            <p class="stat-desc">Of unbroken standard and zero compromise on craft.</p>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-number counter-value" data-target="5000">0</span>
+              <span class="stat-plus">+</span>
+            </div>
+            <span class="stat-label">MEMBERS</span>
+            <p class="stat-desc">Elite founders, competitive athletes, and visionaries.</p>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-number counter-value" data-target="25">0</span>
+            </div>
+            <span class="stat-label">EXPERT COACHES</span>
+            <p class="stat-desc">Biomechanists, Olympians, and conditioning scientists.</p>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-number counter-value" data-target="50">0</span>
+              <span class="stat-plus">K+</span>
+            </div>
+            <span class="stat-label">SESSIONS</span>
+            <p class="stat-desc">Bespoke training sessions executed with ruthless precision.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 05. PROGRAMS SECTION ("TRAIN WITH INTENT.") -->
+    <section class="programs-section" id="programs">
+      <div class="section-container">
+        <div class="programs-header">
+          <div class="section-label-wrap">
+            <span class="section-number">02</span>
+            <span class="section-label">THE PROTOCOLS</span>
+          </div>
+          <h2 class="section-heading-large">
+            TRAIN WITH<br><span class="italic-fashion">INTENT.</span>
+          </h2>
+          <p class="section-subtitle">
+            Engineered disciplines curated to construct dense functional muscle, kinetic explosiveness, and mental resilience.
+          </p>
+        </div>
+
+        <div class="programs-stack" id="programs-stack">
+          
+          <!-- Card 01 -->
+          <div class="program-card tilt-card" data-index="1">
+            <div class="card-bg-wrap">
+              <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1200&auto=format&fit=crop" alt="Heavy barbell strength training" class="program-img" />
+              <div class="program-overlay"></div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="program-num">01</span>
+                <span class="program-category">HYPERTROPHY & POWER</span>
+              </div>
+              <div class="card-bottom">
+                <h3 class="program-title">STRENGTH</h3>
+                <p class="program-desc">
+                  Olympic barbell mechanics, eccentric overload, and raw force production. Built upon calibrated Eleiko platforms with integrated force plates.
+                </p>
+                <div class="program-footer">
+                  <span class="program-link hover-link">EXPLORE PROTOCOL →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 02 -->
+          <div class="program-card tilt-card" data-index="2">
+            <div class="card-bg-wrap">
+              <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=1200&auto=format&fit=crop" alt="High speed athletic sprint performance" class="program-img" />
+              <div class="program-overlay"></div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="program-num">02</span>
+                <span class="program-category">METABOLIC VELOCITY</span>
+              </div>
+              <div class="card-bottom">
+                <h3 class="program-title">PERFORMANCE</h3>
+                <p class="program-desc">
+                  Lactate threshold buffering, explosive rate of force development, and dynamic kinetic chains engineered for peak cardiovascular output.
+                </p>
+                <div class="program-footer">
+                  <span class="program-link hover-link">EXPLORE PROTOCOL →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 03 -->
+          <div class="program-card tilt-card" data-index="3">
+            <div class="card-bg-wrap">
+              <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?q=80&w=1200&auto=format&fit=crop" alt="Battle ropes conditioning in dark studio" class="program-img" />
+              <div class="program-overlay"></div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="program-num">03</span>
+                <span class="program-category">AEROBIC ENGINE</span>
+              </div>
+              <div class="card-bottom">
+                <h3 class="program-title">CONDITIONING</h3>
+                <p class="program-desc">
+                  High-density intervals, assault runners, air sleds, and high-altitude simulation protocols designed to elevate your VO2 Max to the 99th percentile.
+                </p>
+                <div class="program-footer">
+                  <span class="program-link hover-link">EXPLORE PROTOCOL →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 04 -->
+          <div class="program-card tilt-card" data-index="4">
+            <div class="card-bg-wrap">
+              <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop" alt="Athletic kettlebell training" class="program-img" />
+              <div class="program-overlay"></div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="program-num">04</span>
+                <span class="program-category">MULTI-PLANAR AGILITY</span>
+              </div>
+              <div class="card-bottom">
+                <h3 class="program-title">ATHLETIC</h3>
+                <p class="program-desc">
+                  Rotational torque, plyometric shock method, and joint resiliency protocols formulated for elite combatants, sprinters, and multi-sport competitors.
+                </p>
+                <div class="program-footer">
+                  <span class="program-link hover-link">EXPLORE PROTOCOL →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 05 -->
+          <div class="program-card tilt-card" data-index="5">
+            <div class="card-bg-wrap">
+              <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop" alt="1-on-1 private coach supervision" class="program-img" />
+              <div class="program-overlay"></div>
+            </div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="program-num">05</span>
+                <span class="program-category">1-ON-1 CONCIERGE</span>
+              </div>
+              <div class="card-bottom">
+                <h3 class="program-title">PERSONAL TRAINING</h3>
+                <p class="program-desc">
+                  Dedicated master biomechanist, continuous biomarker testing, customized nutrient periodization, and private training suite access.
+                </p>
+                <div class="program-footer">
+                  <span class="program-link hover-link">EXPLORE PROTOCOL →</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 06. CINEMATIC FULLSCREEN PINNED SECTION -->
+    <section class="cinematic-section" id="cinematic-quote">
+      <div class="cinematic-bg-wrap">
+        <img 
+          src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=2000&auto=format&fit=crop" 
+          alt="Athlete deadlifting in atmospheric dark club"
+          class="cinematic-img"
+          id="cinematic-img"
+        />
+        <div class="cinematic-overlay"></div>
+      </div>
+
+      <div class="cinematic-content">
+        <div class="cinematic-badge">THE CREED</div>
+        <h2 class="cinematic-title" id="cinematic-heading">
+          <span class="light-sweep-text">DISCIPLINE</span>
+          <span class="light-sweep-text italic-fashion">CREATES</span>
+          <span class="light-sweep-text">FREEDOM.</span>
+        </h2>
+        <p class="cinematic-caption">
+          Pain is the currency of physical rebirth. Inside these vaults, we forge the sovereign mind.
+        </p>
+      </div>
+    </section>
+
+    <!-- 07. HORIZONTAL SCROLL EXPERIENCE ("THE IRONVAULT EXPERIENCE") -->
+    <section class="horizontal-section" id="experience">
+      <div class="horizontal-header-strip">
+        <div class="section-container">
+          <div class="section-label-wrap">
+            <span class="section-number">03</span>
+            <span class="section-label">THE SPACES</span>
+          </div>
+          <h2 class="section-heading-large">
+            THE IRONVAULT<br><span class="italic-fashion">EXPERIENCE.</span>
+          </h2>
+          <p class="section-subtitle">
+            Scroll vertically to traverse our world-class architectural training zones.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pinned Horizontal Gallery -->
+      <div class="horizontal-wrapper" id="horizontal-wrapper">
+        <div class="horizontal-pinned-nav">
+          <div class="h-nav-left">
+            <span class="h-nav-badge">03 / 05 SANCTUARIES</span>
+            <span class="h-nav-title">THE ARCHITECTURE</span>
+          </div>
+          <div class="h-nav-right">
+            <span class="h-nav-hint">DRAG OR SCROLL HORIZONTALLY →</span>
+          </div>
+        </div>
+
+        <div class="horizontal-track" id="horizontal-track">
+          
+          <!-- Experience Card 1 -->
+          <div class="h-card" data-cursor="DRAG">
+            <div class="h-card-inner">
+              <div class="h-img-wrap">
+                <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?q=80&w=1400&auto=format&fit=crop" alt="Bespoke matte black dumbbells and racks" class="h-img" />
+              </div>
+              <div class="h-info">
+                <span class="h-counter">01 / 05</span>
+                <h3 class="h-title">BIOMECHANICAL STRENGTH</h3>
+                <p class="h-text">Custom forged matte-black calibrated weights, precision Swiss bearings, and bespoke micro-loading dumbbells.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Card 2 -->
+          <div class="h-card" data-cursor="DRAG">
+            <div class="h-card-inner">
+              <div class="h-img-wrap">
+                <img src="https://images.unsplash.com/photo-1549719386-74dfcbf7dbed?q=80&w=1400&auto=format&fit=crop" alt="Boxing sanctuary and leather heavy bags" class="h-img" />
+              </div>
+              <div class="h-info">
+                <span class="h-counter">02 / 05</span>
+                <h3 class="h-title">COMBAT SANCTUARY</h3>
+                <p class="h-text">Handcrafted Italian leather heavy bags, full-spec competition ring, and private Olympic striking coaches.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Card 3 -->
+          <div class="h-card" data-cursor="DRAG">
+            <div class="h-card-inner">
+              <div class="h-img-wrap">
+                <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1400&auto=format&fit=crop" alt="Functional turf arena with sled tracks" class="h-img" />
+              </div>
+              <div class="h-info">
+                <span class="h-counter">03 / 05</span>
+                <h3 class="h-title">FUNCTIONAL TURF ARENA</h3>
+                <p class="h-text">50-meter indoor sprint turf, magnetic resistance sleds, plyometric towers, and agility obstacle matrices.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Card 4 -->
+          <div class="h-card" data-cursor="DRAG">
+            <div class="h-card-inner">
+              <div class="h-img-wrap">
+                <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?q=80&w=1400&auto=format&fit=crop" alt="Biometric testing and 3D motion capture lab" class="h-img" />
+              </div>
+              <div class="h-info">
+                <span class="h-counter">04 / 05</span>
+                <h3 class="h-title">MASTER COACHING LAB</h3>
+                <p class="h-text">High-speed motion capture, continuous DEXA body composition scanning, and real-time neuromuscular analytics.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Card 5 -->
+          <div class="h-card" data-cursor="DRAG">
+            <div class="h-card-inner">
+              <div class="h-img-wrap">
+                <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=1400&auto=format&fit=crop" alt="Luxury recovery lounge and cryotherapy" class="h-img" />
+              </div>
+              <div class="h-info">
+                <span class="h-counter">05 / 05</span>
+                <h3 class="h-title">RECOVERY & CRYO</h3>
+                <p class="h-text">-140°C whole-body cryotherapy, infrared cedar saunas, cold plunge baths, and contrast hydrotherapy suites.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 08. TRAINER SECTION ("THE PEOPLE BEHIND THE POWER.") -->
+    <section class="trainers-section" id="trainers">
+      <div class="section-container">
+        
+        <div class="trainers-header">
+          <div class="section-label-wrap">
+            <span class="section-number">04</span>
+            <span class="section-label">THE FACULTY</span>
+          </div>
+          <h2 class="section-heading-large">
+            THE PEOPLE<br><span class="italic-fashion">BEHIND THE POWER.</span>
+          </h2>
+          <p class="section-subtitle">
+            Former Olympic champions, biomechanics PhDs, and world-record holders dedicated to crafting your physical zenith.
+          </p>
+        </div>
+
+        <div class="trainers-grid">
+          
+          <!-- Trainer 1 -->
+          <div class="trainer-card" data-trainer="vance" data-cursor="VIEW">
+            <div class="trainer-img-wrap">
+              <img 
+                src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1000&auto=format&fit=crop" 
+                alt="Marcus Vance - Master of Biomechanics" 
+                class="trainer-img"
+              />
+              <div class="trainer-gradient"></div>
+            </div>
+            <div class="trainer-meta">
+              <span class="trainer-role">HEAD OF BIOMECHANICS</span>
+              <h3 class="trainer-name">MARCUS VANCE</h3>
+              <p class="trainer-bio">14 years coaching Olympic weightlifters. Specialist in neurological recruitment and structural hypertrophy.</p>
+              <div class="trainer-socials">
+                <span>IG / @MARCUS.VAULT</span>
+                <span class="view-link">VIEW DOSSIER ↗</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trainer 2 -->
+          <div class="trainer-card" data-trainer="rostova" data-cursor="VIEW">
+            <div class="trainer-img-wrap">
+              <img 
+                src="https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1000&auto=format&fit=crop" 
+                alt="Elena Rostova - Combat & Conditioning Director" 
+                class="trainer-img"
+              />
+              <div class="trainer-gradient"></div>
+            </div>
+            <div class="trainer-meta">
+              <span class="trainer-role">COMBAT & METABOLIC LEAD</span>
+              <h3 class="trainer-name">ELENA ROSTOVA</h3>
+              <p class="trainer-bio">Former world kickboxing contender and high-altitude endurance consultant for elite tactical units.</p>
+              <div class="trainer-socials">
+                <span>IG / @ELENA.ROSTOVA</span>
+                <span class="view-link">VIEW DOSSIER ↗</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trainer 3 -->
+          <div class="trainer-card" data-trainer="thorne" data-cursor="VIEW">
+            <div class="trainer-img-wrap">
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1000&auto=format&fit=crop" 
+                alt="Kaelen Thorne - Director of Athletic Development" 
+                class="trainer-img"
+              />
+              <div class="trainer-gradient"></div>
+            </div>
+            <div class="trainer-meta">
+              <span class="trainer-role">ATHLETIC PEAK VELOCITY</span>
+              <h3 class="trainer-name">KAELEN THORNE</h3>
+              <p class="trainer-bio">Specializing in rotational torque transfer, kinetic velocity, and multi-planar tendon strength.</p>
+              <div class="trainer-socials">
+                <span>IG / @THORNE.PERF</span>
+                <span class="view-link">VIEW DOSSIER ↗</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trainer 4 -->
+          <div class="trainer-card" data-trainer="sterling" data-cursor="VIEW">
+            <div class="trainer-img-wrap">
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop" 
+                alt="David Sterling - Director of Neuromuscular Recovery" 
+                class="trainer-img"
+              />
+              <div class="trainer-gradient"></div>
+            </div>
+            <div class="trainer-meta">
+              <span class="trainer-role">RECOVERY & MOBILITY DIRECTOR</span>
+              <h3 class="trainer-name">DAVID STERLING</h3>
+              <p class="trainer-bio">Master of neuro-fascial unwinding, cryotherapy protocols, and circadian biomarker restoration.</p>
+              <div class="trainer-socials">
+                <span>IG / @STERLING.RECOVERY</span>
+                <span class="view-link">VIEW DOSSIER ↗</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 09. BEFORE / AFTER TRANSFORMATION COMPARISON SLIDER -->
+    <section class="transformation-section" id="transformation">
+      <div class="section-container">
+        
+        <div class="trans-header">
+          <div class="section-label-wrap">
+            <span class="section-number">05</span>
+            <span class="section-label">VERIFIED PROOF</span>
+          </div>
+          <h2 class="section-heading-large">
+            TRANSFORMATION IS<br><span class="italic-fashion">INEVITABLE.</span>
+          </h2>
+          <p class="section-subtitle">
+            Inspect the tangible structural adaptation achieved in 16 weeks of customized hypertrophy and nutrient programming.
+          </p>
+        </div>
+
+        <div class="ba-slider-container" id="ba-container" data-cursor="DRAG">
+          
+          <!-- Before Layer (Underneath) -->
+          <div class="ba-layer ba-before">
+            <img 
+              src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1600&auto=format&fit=crop" 
+              alt="Baseline Physique Assessment" 
+              class="ba-image"
+            />
+            <div class="ba-tag tag-before">WEEK 00 — BASELINE</div>
+          </div>
+
+          <!-- After Layer (Clipped on top) -->
+          <div class="ba-layer ba-after" id="ba-after-layer">
+            <img 
+              src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1600&auto=format&fit=crop" 
+              alt="Transformed Elite Conditioning" 
+              class="ba-image"
+            />
+            <div class="ba-tag tag-after">WEEK 16 — PEAK SCULPTURE</div>
+          </div>
+
+          <!-- Interactive Divider Handle -->
+          <div class="ba-handle" id="ba-handle">
+            <div class="ba-line"></div>
+            <div class="ba-knob hover-magnetic">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+              </svg>
+            </div>
+            <div class="ba-percent-badge" id="ba-percent">50%</div>
+          </div>
+
+        </div>
+
+        <div class="trans-data-bar">
+          <div class="t-metric">
+            <span class="t-val">-8.4%</span>
+            <span class="t-sub">VISCERAL ADIPOSE</span>
+          </div>
+          <div class="t-metric">
+            <span class="t-val">+6.2 KG</span>
+            <span class="t-sub">LEAN TISSUE MASS</span>
+          </div>
+          <div class="t-metric">
+            <span class="t-val">+42%</span>
+            <span class="t-sub">POSTURAL POWER OUTPUT</span>
+          </div>
+          <div class="t-metric">
+            <span class="t-val">99TH</span>
+            <span class="t-sub">CARDIOVASCULAR TIER</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 10. MEMBERSHIP PRICING SECTION -->
+    <section class="membership-section" id="membership">
+      <div class="section-container">
+        
+        <div class="membership-header">
+          <div class="section-label-wrap">
+            <span class="section-number">06</span>
+            <span class="section-label">SELECT PRIVILEGE</span>
+          </div>
+          <h2 class="section-heading-large">
+            CHOOSE YOUR<br><span class="italic-fashion">LEVEL.</span>
+          </h2>
+          <p class="section-subtitle">
+            Capped strictly to 300 members per facility worldwide to preserve absolute privacy and unparalleled equipment availability.
+          </p>
+
+          <!-- Luxury Billing Period Switch -->
+          <div class="billing-switch-wrap">
+            <span class="billing-label active" id="label-monthly">MONTHLY ACCESS</span>
+            <button class="billing-toggle" id="billing-toggle" aria-label="Toggle Billing Mode">
+              <span class="toggle-slider"></span>
+            </button>
+            <span class="billing-label" id="label-annual">ANNUAL PRIVILEGE <span class="discount-pill">SAVE 20%</span></span>
+          </div>
+        </div>
+
+        <div class="membership-cards">
+          
+          <!-- Card 1: ESSENTIAL -->
+          <div class="price-card tilt-card" data-tier="essential">
+            <div class="price-card-glass"></div>
+            <div class="price-header">
+              <span class="tier-badge">FOUNDATION</span>
+              <h3 class="tier-name">ESSENTIAL</h3>
+              <p class="tier-intro">Uncompromised sanctuary access for self-directed athletes.</p>
+            </div>
+            <div class="price-amount-box">
+              <span class="currency">$</span>
+              <span class="amount" data-monthly="250" data-annual="200">250</span>
+              <span class="period">/ MONTH</span>
+            </div>
+            <ul class="tier-perks">
+              <li><span>✓</span> Full 24/7 biometric club access</li>
+              <li><span>✓</span> Calibrated Eleiko platforms & dumbbells</li>
+              <li><span>✓</span> Sauna & Cold Plunge hydro suite</li>
+              <li><span>✓</span> IronVault App & biometric integration</li>
+              <li class="perk-disabled"><span>✕</span> Dedicated 1-on-1 Master Coach</li>
+              <li class="perk-disabled"><span>✕</span> Private training suite access</li>
+            </ul>
+            <button class="tier-btn btn-apply hover-magnetic" data-tier="Essential">
+              <span>APPLY FOR ACCESS</span>
+            </button>
+          </div>
+
+          <!-- Card 2: PRO (FEATURED WITH MOVING BORDER LIGHT) -->
+          <div class="price-card price-card-featured tilt-card" data-tier="pro">
+            <div class="featured-glow-halo"></div>
+            <div class="featured-border-light"></div>
+            <div class="price-card-glass"></div>
+            <div class="price-header">
+              <div class="featured-ribbon">
+                <span class="pulse-dot"></span> MOST SOUGHT AFTER
+              </div>
+              <h3 class="tier-name">PRO ATHLETE</h3>
+              <p class="tier-intro">Our benchmark performance protocol with elite coaching oversight.</p>
+            </div>
+            <div class="price-amount-box">
+              <span class="currency">$</span>
+              <span class="amount" data-monthly="480" data-annual="384">480</span>
+              <span class="period">/ MONTH</span>
+            </div>
+            <ul class="tier-perks">
+              <li><span>✓</span> Unlimited global club access (All cities)</li>
+              <li><span>✓</span> 4 Bespoke coaching sessions per month</li>
+              <li><span>✓</span> Cryotherapy chamber access (Unlimited)</li>
+              <li><span>✓</span> Quarterly DEXA & biomarker blood analysis</li>
+              <li><span>✓</span> Personalized nutrient & peptide consult</li>
+              <li class="perk-disabled"><span>✕</span> 100% Private isolated suite</li>
+            </ul>
+            <button class="tier-btn tier-btn-highlight btn-apply hover-magnetic" data-tier="Pro Athlete">
+              <span>APPLY FOR ACCESS</span>
+            </button>
+          </div>
+
+          <!-- Card 3: PRIVATE -->
+          <div class="price-card tilt-card" data-tier="private">
+            <div class="price-card-glass"></div>
+            <div class="price-header">
+              <span class="tier-badge">SOVEREIGN PRIVILEGE</span>
+              <h3 class="tier-name">PRIVATE CONCIERGE</h3>
+              <p class="tier-intro">The zenith of luxury fitness. Complete anonymity & private chamber.</p>
+            </div>
+            <div class="price-amount-box">
+              <span class="currency">$</span>
+              <span class="amount" data-monthly="950" data-annual="760">950</span>
+              <span class="period">/ MONTH</span>
+            </div>
+            <ul class="tier-perks">
+              <li><span>✓</span> Dedicated private training vault & valet</li>
+              <li><span>✓</span> Unlimited 1-on-1 Master Coach supervision</li>
+              <li><span>✓</span> Weekly biomarker, hormonal & VO2 telemetry</li>
+              <li><span>✓</span> Custom chef-prepared post-workout nutrition</li>
+              <li><span>✓</span> Guest privilege for 2 executive partners</li>
+              <li><span>✓</span> Private underground security entrance</li>
+            </ul>
+            <button class="tier-btn btn-apply hover-magnetic" data-tier="Private Concierge">
+              <span>APPLY FOR ACCESS</span>
+            </button>
+          </div>
+
+        </div>
+
+        <div class="membership-footnote">
+          <p>All candidates undergo an in-person physical screening & club covenant interview prior to admission.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 11. EDITORIAL TESTIMONIALS SLIDER -->
+    <section class="testimonials-section" id="testimonials">
+      <div class="section-container">
+        
+        <div class="section-label-wrap center">
+          <span class="section-number">07</span>
+          <span class="section-label">VOICES OF THE COVENANT</span>
+        </div>
+
+        <div class="testimonial-slider-wrap">
+          <div class="quote-mark-huge">“</div>
+
+          <div class="testimonial-slides" id="testimonial-track">
+            
+            <!-- Slide 1 -->
+            <div class="testimonial-slide active">
+              <blockquote class="testimonial-quote">
+                THE STRONGEST VERSION OF YOU IS BUILT, NOT DISCOVERED. IRONVAULT IS NOT WHERE YOU WORK OUT; IT IS WHERE YOU RECONSTRUCT YOUR WILL.
+              </blockquote>
+              <div class="testimonial-author">
+                <span class="author-name">CHRISTIAN STERLING</span>
+                <span class="author-title">FOUNDER & CHIEF EXECUTIVE, AETHEL CAPITAL • MAYFAIR MEMBER</span>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">
+                IN AN INDUSTRY SATURATED WITH SHALLOW NOISE, THIS CLUB IS A CATHEDRAL OF INTENTIONALITY. THE CALIBRATION OF THE EQUIPMENT IS UNMATCHED ON EARTH.
+              </blockquote>
+              <div class="testimonial-author">
+                <span class="author-name">VICTORIA L'ESTRANGE</span>
+                <span class="author-title">CREATIVE DIRECTOR & ULTRA-ENDURANCE COMPETITOR • TOKYO MEMBER</span>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="testimonial-slide">
+              <blockquote class="testimonial-quote">
+                AFTER 12 YEARS OF OLYMPIC COMPETITION, IRONVAULT IS THE ONLY FACILITY THAT COMMANDS MY UNQUALIFIED RESPECT. PURE EXCELLENCE.
+              </blockquote>
+              <div class="testimonial-author">
+                <span class="author-name">DARIUS O’CONNOR</span>
+                <span class="author-title">WORLD HEAVYWEIGHT SILVER MEDALIST • TRIBECA MEMBER</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Slider Navigation Controls -->
+          <div class="testi-controls">
+            <button class="testi-btn hover-magnetic" id="testi-prev" aria-label="Previous quote">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <div class="testi-dots" id="testi-dots">
+              <span class="dot active" data-index="0"></span>
+              <span class="dot" data-index="1"></span>
+              <span class="dot" data-index="2"></span>
+            </div>
+            <button class="testi-btn hover-magnetic" id="testi-next" aria-label="Next quote">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 12. FINAL DRAMATIC CINEMATIC SECTION -->
+    <section class="final-cinematic-section" id="final-cta">
+      <div class="final-bg-wrap">
+        <img 
+          src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=2000&auto=format&fit=crop" 
+          alt="Dark sanctuary gym floor" 
+          class="final-bg-img"
+          id="final-img"
+        />
+        <div class="final-overlay"></div>
+      </div>
+
+      <div class="final-content" id="final-content">
+        <span class="final-subtitle">YOUR SOVEREIGN JOURNEY COMMENCES</span>
+        <h2 class="final-heading" id="final-heading">
+          BECOME<br>
+          <span class="italic-fashion highlight-silver">UNSTOPPABLE.</span>
+        </h2>
+        <p class="final-body">
+          Applications for our next cohort close strictly once capacity is reached. Secure your private consultation with a Master Coach today.
+        </p>
+
+        <div class="final-cta-box">
+          <button class="btn-primary btn-large hover-magnetic btn-apply" id="btn-final-apply" data-cursor="START">
+            <span class="btn-text">START YOUR JOURNEY</span>
+            <span class="btn-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 13. MINIMAL LUXURY FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="section-container">
+      
+      <div class="footer-top">
+        <div class="footer-brand-col">
+          <div class="footer-logo">IRONVAULT</div>
+          <p class="footer-desc">
+            The world's most exclusive sanctuary for physical resilience, biomechanical architecture, and peak human sovereignty.
+          </p>
+          <div class="footer-status">
+            <span class="pulse-indicator"></span>
+            <span>CLUBS OPERATIONAL • LONDON • NYC • TOKYO • DUBAI</span>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <span class="f-col-title">SANCTUARIES</span>
+          <ul>
+            <li>MAYFAIR, LONDON</li>
+            <li>TRIBECA, NEW YORK</li>
+            <li>GINZA, TOKYO</li>
+            <li>DIFC, DUBAI</li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <span class="f-col-title">ARCHIVE</span>
+          <ul>
+            <li><a href="#about" class="hover-link">THE PHILOSOPHY</a></li>
+            <li><a href="#programs" class="hover-link">TRAINING PROTOCOLS</a></li>
+            <li><a href="#experience" class="hover-link">THE SPACES</a></li>
+            <li><a href="#trainers" class="hover-link">MASTER COACHES</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-nav-col">
+          <span class="f-col-title">COMMUNICATIONS</span>
+          <ul>
+            <li><a href="https://instagram.com" target="_blank" rel="noreferrer" class="hover-link">INSTAGRAM ↗</a></li>
+            <li><a href="https://youtube.com" target="_blank" rel="noreferrer" class="hover-link">YOUTUBE ↗</a></li>
+            <li><a href="mailto:concierge@ironvault.club" class="hover-link">CONCIERGE DESK</a></li>
+            <li><a href="#membership" class="hover-link">MEMBERSHIP DESK</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-watermark-wrap">
+        <span class="footer-watermark">IRONVAULT</span>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright">
+          © 2026 IRONVAULT PRIVATE FITNESS CLUB. ALL RIGHTS RESERVED.
+        </div>
+        <div class="footer-legal">
+          <a href="#" class="hover-link">PRIVACY POLICY</a>
+          <span class="sep">•</span>
+          <a href="#" class="hover-link">TERMS OF COVENANT</a>
+          <span class="sep">•</span>
+          <a href="#" class="hover-link">BIOMETRIC DATA ETHICS</a>
+        </div>
+        <button class="back-to-top hover-magnetic" id="btn-back-top" title="Return to Top">
+          <span>BACK TO APEX</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19V5M5 12l7-7 7 7" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- CONCIERGE MEMBERSHIP APPLICATION MODAL -->
+  <div class="modal-overlay" id="app-modal" aria-hidden="true">
+    <div class="modal-dialog">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">✕</button>
+      
+      <div class="modal-content" id="modal-form-view">
+        <div class="modal-header">
+          <span class="modal-subtitle">PRIVATE ADMISSION DOSSIER</span>
+          <h3 class="modal-title">REQUEST INVITATION</h3>
+          <p class="modal-desc">
+            Complete the confidential inquiry below. Our membership admissions council reviews each applicant within 24 hours.
+          </p>
+        </div>
+
+        <form class="modal-form" id="application-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="applicant-name">FULL NAME</label>
+              <input type="text" id="applicant-name" required placeholder="Lord / Dr. / Alexander Vance" />
+            </div>
+            <div class="form-group">
+              <label for="applicant-email">CONFIDENTIAL EMAIL</label>
+              <input type="email" id="applicant-email" required placeholder="vance@private.com" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="applicant-club">PREFERRED SANCTUARY</label>
+              <select id="applicant-club">
+                <option value="Mayfair, London">Mayfair — London</option>
+                <option value="Tribeca, New York">Tribeca — New York</option>
+                <option value="Ginza, Tokyo">Ginza — Tokyo</option>
+                <option value="DIFC, Dubai">DIFC — Dubai</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="applicant-tier">DESIRED LEVEL</label>
+              <select id="applicant-tier">
+                <option value="Pro Athlete">PRO ATHLETE ($480/mo)</option>
+                <option value="Essential">ESSENTIAL ($250/mo)</option>
+                <option value="Private Concierge">PRIVATE CONCIERGE ($950/mo)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="applicant-goals">PRIMARY PHYSICAL OBJECTIVE</label>
+            <textarea id="applicant-goals" rows="3" placeholder="Olympic preparation, metabolic longevity, structural hypertrophy..."></textarea>
+          </div>
+
+          <button type="submit" class="modal-submit-btn hover-magnetic" id="btn-submit-app">
+            <span>SUBMIT CONFIDENTIAL DOSSIER</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <!-- Success Screen -->
+      <div class="modal-content modal-success" id="modal-success-view" style="display: none;">
+        <div class="success-icon">✦</div>
+        <h3 class="modal-title">DOSSIER TRANSMITTED</h3>
+        <p class="modal-desc">
+          Your dossier has been routed to the Admissions Director. A private liaison will contact you within 24 hours to schedule your biomechanical evaluation.
+        </p>
+        <button class="btn-primary hover-magnetic" id="btn-success-close">
+          <span>RETURN TO THE SANCTUARY</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAINER DOSSIER MODAL -->
+  <div class="modal-overlay" id="trainer-modal" aria-hidden="true">
+    <div class="modal-dialog trainer-dialog">
+      <button class="modal-close" id="trainer-modal-close" aria-label="Close modal">✕</button>
+      <div class="trainer-modal-grid">
+        <div class="trainer-modal-img-wrap">
+          <img src="" alt="Coach Portrait" id="t-modal-img" />
+        </div>
+        <div class="trainer-modal-info">
+          <span class="t-modal-role" id="t-modal-role">MASTER COACH</span>
+          <h3 class="t-modal-name" id="t-modal-name">MARCUS VANCE</h3>
+          <p class="t-modal-bio" id="t-modal-bio">Detailed bio text will render here.</p>
+          <div class="t-modal-credentials">
+            <span class="cred-title">CREDENTIALS & SPECIALTIES</span>
+            <ul id="t-modal-specs">
+              <li>Olympic Weightlifting Senior Master Coach</li>
+              <li>MSc Clinical Biomechanics, Imperial College London</li>
+              <li>14 World Record Holdings supervised</li>
+            </ul>
+          </div>
+          <button class="btn-primary hover-magnetic btn-apply" id="t-modal-book-btn">
+            <span>BOOK PRIVATE CONSULTATION</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
