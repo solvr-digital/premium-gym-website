@@ -2,7 +2,7 @@
 
 A modern and premium gym website built with immersive animations, interactive sections, and a powerful fitness-focused visual experience.
 
-##Live - https://premium-gym-website-delta.vercel.app/
+## Live - https://premium-gym-website-delta.vercel.app/
 
 ## ✨ Features
 
